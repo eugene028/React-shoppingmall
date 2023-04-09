@@ -11,7 +11,10 @@
   "dependencies": {
     "@types/react-router-dom": "^5.3.3",
     "react": "latest",
-    "react-dom": "latest"
+    "react-dom": "latest",
+    "react-router": "^6.10.0",
+    "react-router-dom": "^6.10.0",
+    "vite-plugin-next-react-router": "^0.6.2"
   },
   "devDependencies": {
     "@types/react": "latest",
