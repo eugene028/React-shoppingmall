@@ -12,6 +12,7 @@
     "@types/react-router-dom": "^5.3.3",
     "react": "latest",
     "react-dom": "latest",
+    "react-query": "^3.39.3",
     "react-router": "^6.10.0",
     "react-router-dom": "^6.10.0",
     "vite-plugin-next-react-router": "^0.6.2"
