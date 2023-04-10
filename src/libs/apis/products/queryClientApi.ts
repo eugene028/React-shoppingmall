@@ -14,7 +14,7 @@ export const getClient = (() => {
         if (!client) client = new QueryClient();
         return client
     }
-})()
+})();
 const BASE_URL = 'https://fakestoreapi.com'
 
 export const fetcher = async ({

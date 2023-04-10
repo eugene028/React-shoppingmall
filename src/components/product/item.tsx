@@ -1,4 +1,4 @@
-import { Product } from '../../types';
+import { Product } from '@libs/apis/products/apiTypes'
 
 const ProductItem = ({
     category,
