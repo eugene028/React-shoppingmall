@@ -1,1 +1,1 @@
-export * from './ProductsItem'
+export * from './ProductsItem/ProductItem.style'
