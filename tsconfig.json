@@ -22,7 +22,8 @@
     "paths": {
       "@pages/*": ["src/pages/*"],
       "@components/*": ["src/components/*"],
-      "@libs/*":["src/libs/*"]
+      "@libs/*":["src/libs/*"],
+      "@styles/*": ["src/styles/*"],
     }
   },
   "include": ["src"],
