@@ -1,1 +1,3 @@
-export * from './ProductsItem/ProductItem.style'
+export * from './ProductItem/ProductItem.style';
+export * from './Tag';
+export * from './Text';

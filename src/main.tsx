@@ -13,7 +13,7 @@ const pageGlobalStyle = css`
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
     <BrowserRouter>
-      <Global styles = {pageGlobalStyle}/>
+      {/* <Global styles = {pageGlobalStyle}/> */}
       <ThemeProvider theme = {theme}>
         <App />
       </ThemeProvider>

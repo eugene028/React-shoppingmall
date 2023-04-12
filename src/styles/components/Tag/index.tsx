@@ -2,7 +2,7 @@ import { css } from '@emotion/react';
 import styled from '@emotion/styled';
 import { KeyOfPalette, KeyOfTypo } from '../../theme';
 
-export type TagColorKey = 'main' | 'mono' | 'red';
+export type TagColorKey = "woman" | "man" | 'electronics' | 'jewelery' | 'mono';
 
 type TagColorType = {
   [key in TagColorKey]: {
@@ -21,18 +21,26 @@ type TagSizeType = {
 };
 
 const TAG_COLOR: TagColorType = {
-  main: {
+  woman: {
     background: 'main_100',
     text: 'main_500',
   },
-  mono: {
-    background: 'gray_200',
+  man: {
+    background: 'point_blue',
     text: 'gray_500',
   },
-  red: {
-    background: 'red_100',
-    text: 'red_200',
+  electronics: {
+    background: 'sub_300',
+    text:'black',
   },
+  jewelery: {
+    background: 'point_mint',
+    text: 'black',
+  },
+  mono: {
+    background: 'gray_100',
+    text: 'gray_500',
+  }
 };
 
 const TAG_SIZE: TagSizeType = {

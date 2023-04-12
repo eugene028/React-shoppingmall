@@ -2282,6 +2282,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-simple-star-rating@npm:^5.1.7":
+  version: 5.1.7
+  resolution: "react-simple-star-rating@npm:5.1.7"
+  peerDependencies:
+    react: ">=18.0.0"
+    react-dom: ">=18.0.0"
+  checksum: e7b3f75dc2c86d46ba684ba1fe3364e005bdaf7e438b6c857613c9920d3a60a547751dc80a9223caec8098d9996de36b042f9c91cc045e25f5200122576f6c06
+  languageName: node
+  linkType: hard
+
 "react@npm:latest":
   version: 18.2.0
   resolution: "react@npm:18.2.0"
@@ -2480,6 +2490,7 @@ __metadata:
     react-responsive: ^9.0.2
     react-router: ^6.10.0
     react-router-dom: ^6.10.0
+    react-simple-star-rating: ^5.1.7
     styled-components: ^5.3.9
     typescript: ^4.9.3
     vite: ^4.2.0
