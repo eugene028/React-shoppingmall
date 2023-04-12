@@ -1,7 +1,5 @@
-
-import { Product } from '@libs/apis/products/apiTypes';
-
-const ProductItem = (props: Product) => {
+import { Product } from "src/graphql/products";
+const ProductItem = () => {
     return (
         <div>
             

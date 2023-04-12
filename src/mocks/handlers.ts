@@ -1,7 +1,7 @@
 import { graphql } from 'msw';
 
 import { v4 as uuid} from 'uuid';
-import GET_PRODUCTS from '../graphql/products'
+import GET_PRODUCTS, { GET_PRODUCT} from '../graphql/products'
 
 
 const mock_products = Array.from( {length: 20}).map((_, i) => ({
@@ -22,6 +22,9 @@ export const handlers = [
             })
         )
     }),
+    graphql.query(GET_PRODUCT, (req, res, ctx) => {
+        return res(ctx.data(mock_products[0]))
+    })
   ]
   
   
