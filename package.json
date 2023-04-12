@@ -13,8 +13,12 @@
     "@emotion/react": "^11.10.6",
     "@emotion/serialize": "^1.1.1",
     "@emotion/styled": "^11.10.6",
+    "@types/node": "^18.15.11",
     "@types/react-router-dom": "^5.3.3",
     "emotion-reset": "^3.0.1",
+    "graphql": "^16.6.0",
+    "graphql-request": "^5.2.0",
+    "graphql-tag": "^2.12.6",
     "react": "latest",
     "react-dom": "latest",
     "react-query": "^3.39.3",
@@ -23,14 +27,20 @@
     "react-router-dom": "^6.10.0",
     "react-simple-star-rating": "^5.1.7",
     "styled-components": "^5.3.9",
+    "uuid": "^9.0.0",
     "vite-plugin-next-react-router": "^0.6.2"
   },
   "devDependencies": {
     "@types/react": "latest",
     "@types/react-dom": "latest",
+    "@types/uuid": "^9.0.1",
     "@vitejs/plugin-react": "^3.1.0",
+    "msw": "^1.2.1",
     "typescript": "^4.9.3",
     "vite": "^4.2.0"
   },
-  "packageManager": "yarn@3.5.0"
+  "packageManager": "yarn@3.5.0",
+  "msw": {
+    "workerDirectory": "public"
+  }
 }
