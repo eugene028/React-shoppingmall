@@ -85,25 +85,25 @@ export const typo = {
   // Header
   G_Header_28_B: css`
     font-family: 'KCC-Ganpan';
-    font-weight: 700;
+    font-weight: normal;
     font-size: ${calcRem(28)};
     line-height: 120%;
   `,
   G_Header_24_B: css`
     font-family: 'KCC-Ganpan';
-    font-weight: 700;
+    font-weight: normal;
     font-size: ${calcRem(24)};
     line-height: 120%;
   `,
   G_Header_20_B: css`
     font-family: 'KCC-Ganpan';
-    font-weight: 700;
+    font-weight: normal;
     font-size: ${calcRem(20)};
     line-height: 100%;
   `,
   G_Header_18_M: css`
     font-family: 'KCC-Ganpan';
-    font-weight: 400;
+    font-weight: normal;
     font-size: ${calcRem(18)};
     line-height: 150%;
   `,

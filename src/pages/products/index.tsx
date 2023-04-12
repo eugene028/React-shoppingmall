@@ -4,14 +4,18 @@ import { Product } from '@libs/apis/products/apiTypes'
 import ProductItems from '@components/productList/ProductList';
 import styled from '@emotion/styled';
 import { media } from '@styles/theme';
+import { Text } from '@styles/components';
+import { Padding } from '@styles/layout';
 const ProductPage = () => {
     const { data } = useQuery<Product[]>(QueryKeys.PRODUCTS, () => fetcher({
         method: 'GET',
         path: '/products'
     }))
-    console.log(data);
     return (
         <div>
+          <Padding size = {[60, 20]}>
+            <Text typo = 'G_Header_28_B' color = "black">오늘의 추천 상품</Text>
+          </Padding>
             <ProductList>
                 {data?.map(product => (
                     <ProductItems {...product} key={product.id}/>
@@ -29,7 +33,7 @@ const ProductList = styled.div`
   ${media.mobile} {
     grid-gap: 32px 32px;
   }
-  margin: 145px auto 0 auto;
+  margin: 10px auto 0 auto;
   max-width: 936px;
 
   ${media.mobile} {

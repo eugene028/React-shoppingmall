@@ -29,14 +29,22 @@ export const fetcher = async ({
     params ?: AnyOBJ;
 }) => {
     try {
-        const url = `${BASE_URL}${path}`
+        let url = `${BASE_URL}${path}`
         const fetchOptions: RequestInit = {
             method,
             headers: {
                 'Content-Type': 'application/json',
                 'Access-Control-Allow-Origin': BASE_URL,
-            }
+            },
         }
+        //파람이 있다면 파람처리
+        if (params) {
+            const searchParams  = new URLSearchParams(params);
+            url += '?' + searchParams.toString();
+        }
+        //바디가 있다면 바디처리!
+        if (body) fetchOptions.body = JSON.stringify(body);
+
         const res = await fetch(url, fetchOptions);
         const json = await res.json();
         return json;

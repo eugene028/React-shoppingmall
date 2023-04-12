@@ -4,6 +4,7 @@ import { Text, Tag, ProductItem } from '@styles/components';
 import { useState } from 'react';
 import { TagColorKey } from '@styles/components';
 import StarRate from './StarRate';
+import { Link } from 'react-router-dom';
 
 const ProductItems= (props: Product) => {
   const [category, setCategory] = useState('');
@@ -15,25 +16,22 @@ const ProductItems= (props: Product) => {
     return "mono"
   }
   return (
-    <ProductItem>
-        <ProductImg>
-          <img src = {props.image}/>
-          <Tag size="md" color={setTag(props.category)} text={props.category} className="tag"/>
-        </ProductImg>
-        <Text typo="Text_14_SB"
-          color="gray_400"
-          as="p"
-          >{props.title}
-        </Text>
-        <Text
-          typo="Header_24"
-          color="black"
-          as="p"
-        >
-          $ {props.price}
-        </Text>
-        <StarRate ratingnum = {props.rating.rate}/>
-      </ProductItem>
+    <Link to = {`/products/${props.id}`}>
+      <ProductItem>
+          <ProductImg>
+            <img src = {props.image}/>
+            <Tag size="md" color={setTag(props.category)} text={props.category} className="tag"/>
+          </ProductImg>
+          <Text typo="Text_14_SB"
+            color="gray_400"
+          >{props.title}</Text>
+          <Text
+            typo="Header_24"
+            color="black"
+          >$ {props.price}</Text>
+          <StarRate ratingnum = {props.rating.rate}/>
+        </ProductItem>
+      </Link>
   )
 };
 export default ProductItems;
