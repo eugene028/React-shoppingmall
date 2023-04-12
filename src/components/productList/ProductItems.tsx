@@ -1,4 +1,4 @@
-import { Product } from '@libs/apis/products/apiTypes'
+import { Product } from 'src/graphql/products';
 import styled from '@emotion/styled';
 import { Text, Tag, ProductItem } from '@styles/components';
 import { useState } from 'react';
@@ -7,20 +7,11 @@ import StarRate from './StarRate';
 import { Link } from 'react-router-dom';
 
 const ProductItems= (props: Product) => {
-  const [category, setCategory] = useState('');
-  const setTag = (category : string) : TagColorKey  => {
-    if (category === "men's clothing") return "man"
-    else if (category === "women's clothing") return "woman"
-    else if (category === "electronics") return "electronics"
-    else if (category === "jewelery") return "jewelery"
-    return "mono"
-  }
   return (
     <Link to = {`/products/${props.id}`}>
       <ProductItem>
           <ProductImg>
-            <img src = {props.image}/>
-            <Tag size="md" color={setTag(props.category)} text={props.category} className="tag"/>
+            <img src = {props.imageUrl}/>
           </ProductImg>
           <Text typo="Text_14_SB"
             color="gray_400"
@@ -29,7 +20,7 @@ const ProductItems= (props: Product) => {
             typo="Header_24"
             color="black"
           >$ {props.price}</Text>
-          <StarRate ratingnum = {props.rating.rate}/>
+          <StarRate ratingnum = {props.rate}/>
         </ProductItem>
       </Link>
   )

@@ -1,23 +1,21 @@
 import { useQuery } from 'react-query';
-import { fetcher, QueryKeys } from '@libs/apis/products/queryClientApi'
-import { Product } from '@libs/apis/products/apiTypes'
-import ProductItems from '@components/productList/ProductList';
+import { graphqlFetcher, QueryKeys } from '@libs/apis/products/queryClientApi'
+import ProductItems from '@components/productList/ProductItems';
 import styled from '@emotion/styled';
 import { media } from '@styles/theme';
 import { Text } from '@styles/components';
 import { Padding } from '@styles/layout';
+import GET_PRODUCTS, { Products } from '../../graphql/products'
 const ProductPage = () => {
-    const { data } = useQuery<Product[]>(QueryKeys.PRODUCTS, () => fetcher({
-        method: 'GET',
-        path: '/products'
-    }))
+    const { data } = useQuery<Products>(QueryKeys.PRODUCTS, () => 
+      graphqlFetcher(GET_PRODUCTS);
     return (
         <div>
           <Padding size = {[60, 20]}>
             <Text typo = 'G_Header_28_B' color = "black">오늘의 추천 상품</Text>
           </Padding>
             <ProductList>
-                {data?.map(product => (
+                {data?.products?.map(product => (
                     <ProductItems {...product} key={product.id}/>
                 ))}
             </ProductList>
