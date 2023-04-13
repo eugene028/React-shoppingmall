@@ -6,8 +6,8 @@ import ProductItem from "@components/Product/ProductItem";
 
 const ProductDetail = () => {
     const { id } = useParams();
-    const { data } = useQuery<Product | unknown>([QueryKeys.PRODUCTS, id], 
-        () => graphqlFetcher(GET_PRODUCT, { id }));
+    const { data } = useQuery<Product>([QueryKeys.PRODUCTS, id], 
+        () => graphqlFetcher<Product>(GET_PRODUCT, { id }));
     if (!data) return null;
     return (
         <div>

@@ -1,18 +1,20 @@
 import { Product } from 'src/graphql/products';
 import styled from '@emotion/styled';
-import { Text, Tag, ProductItem } from '@styles/components';
+import { Text, ProductItem } from '@styles/components';
 import StarRate from './StarRate';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import { theme } from '@styles/theme';
-import { cartItemSelector } from '../../store/cart'
-import { useRecoilState} from 'recoil';
+import { useMutation } from 'react-query';
+import { graphqlFetcher, QueryKeys } from '@libs/apis/products/queryClientApi';
+import { ADD_CART } from '../../graphql/cart'
 
 const ProductItems= (props: Product) => {
-  const [cartAmount, setCartAmount] = useRecoilState(cartItemSelector(props.id));
-  // const addToCart =  () => setCartAmount(cartAmount || 0 + 1);
-  const addToCart = () => setCartAmount(prev => (prev || 0) + 1);
-  return (
+  // const [cartAmount, setCartAmount] = useRecoilState(cartItemSelector(props.id));
+  // // const addToCart =  () => setCartAmount(cartAmount || 0 + 1);
+  // const addToCart = () => setCartAmount(prev => (prev || 0) + 1);
+  const { mutate : addCart } = useMutation((id : string) => graphqlFetcher(ADD_CART, { id }))
+   return (
     <>
     <ProductItem>
       <Link to = {`/products/${props.id}`}>
@@ -32,9 +34,8 @@ const ProductItems= (props: Product) => {
         <FaShoppingCart 
           color = {theme.palette['main_400']} 
           className ="product-item__add-cart"
-          onClick = {addToCart}
+          onClick = {() => addCart(props.id)}
           />
-        <span>{cartAmount || 0}</span>
         </ProductItem>
     </>
   )
