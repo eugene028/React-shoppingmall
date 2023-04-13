@@ -1,5 +1,5 @@
 import { graphql } from 'msw';
-import { GET_CART, ADD_CART, TCart, UPDATE_CART } from '../graphql/cart'
+import { GET_CART, ADD_CART, TCart, UPDATE_CART, DELETE_CART } from '../graphql/cart'
 import GET_PRODUCTS, { GET_PRODUCT} from '../graphql/products'
 
 //즉시실행함수로 변경
@@ -61,6 +61,12 @@ export const handlers = [
         newData[id] = newItem;
         cartData = newData;
         return res(ctx.data(newItem));
+    }),
+    graphql.mutation(DELETE_CART, ({ variables: { id }}, res, ctx) => {
+        const newData = {...cartData}
+        delete newData[id]
+        cartData = newData;
+        return res(ctx.data(id));
     })
   ]
   

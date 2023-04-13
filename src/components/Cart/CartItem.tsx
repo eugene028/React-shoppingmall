@@ -1,4 +1,4 @@
-import { TCart, UPDATE_CART } from "../../graphql/cart"
+import { DELETE_CART, TCart, UPDATE_CART } from "../../graphql/cart"
 import { useMutation } from 'react-query';
 import { getClient, graphqlFetcher, QueryKeys } from "@libs/apis/products/queryClientApi";
 import { SyntheticEvent } from "react";
@@ -8,7 +8,7 @@ const CartItem = ({ id, imageUrl, price, title, amount
     const queryClient = getClient();
     const { mutate : updateCart } = useMutation(({id, amount} : {id: string, amount: number}) => 
         graphqlFetcher(UPDATE_CART, { id, amount }),
-        {//서버에 요청하기 전에 미리 업뎃하겠다.
+        {//서버에 요청하기 전에 미리 업뎃하겠다. 낙관적 데이터 처리!
             onMutate: async ({ id, amount }) => {
                 //기존 데이터 덮어씌움 방지
                 await queryClient.cancelQueries(QueryKeys.CART)
@@ -31,11 +31,24 @@ const CartItem = ({ id, imageUrl, price, title, amount
                 queryClient.setQueryData(QueryKeys.CART, newCart);
             }
         }
-        );
+        );//카트 전체에 대한 것을 가져옴. (캐시를 관리하는..)
+    
+    const  { mutate : deleteCart } = useMutation(({id} : {id: string}) => 
+    graphqlFetcher(DELETE_CART, { id }),
+    {
+        onSuccess: () => {
+            queryClient.invalidateQueries(QueryKeys.CART);
+            //invalidate를 사용하였기 때문에 이때마다 모든 카트를 가지고옴.
+        }
+    })
 
     const handleUpdateAmount = (e: SyntheticEvent) => {
         const amount = Number((e.target as HTMLInputElement).value)
         updateCart({id, amount})
+    }
+
+    const handleDeleteItem = () => {
+        deleteCart({ id })
     }
             //개선해서 갱신한 정보만 받아오도록 변경합니다. (서버에서 업데이트 한 값 가져오기)
         //     onSuccess: (newValue) => {
@@ -61,7 +74,7 @@ const CartItem = ({ id, imageUrl, price, title, amount
                 <ul>{title}</ul>
                 <ul>{amount}</ul>
                 <input type = "number" className = "cart-item__amount" value = {amount} onChange={handleUpdateAmount}/>
-                <button type = "button">삭제</button>
+                <button type = "button" onClick = {handleDeleteItem}>삭제</button>
             </li>
         </>
     )
