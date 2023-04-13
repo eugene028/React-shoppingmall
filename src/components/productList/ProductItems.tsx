@@ -1,28 +1,42 @@
 import { Product } from 'src/graphql/products';
 import styled from '@emotion/styled';
 import { Text, Tag, ProductItem } from '@styles/components';
-import { useState } from 'react';
-import { TagColorKey } from '@styles/components';
 import StarRate from './StarRate';
 import { Link } from 'react-router-dom';
+import { FaShoppingCart } from 'react-icons/fa';
+import { theme } from '@styles/theme';
+import { cartItemSelector } from '../../store/cart'
+import { useRecoilState} from 'recoil';
 
 const ProductItems= (props: Product) => {
+  const [cartAmount, setCartAmount] = useRecoilState(cartItemSelector(props.id));
+  // const addToCart =  () => setCartAmount(cartAmount || 0 + 1);
+  const addToCart = () => setCartAmount(prev => (prev || 0) + 1);
   return (
-    <Link to = {`/products/${props.id}`}>
-      <ProductItem>
-          <ProductImg>
-            <img src = {props.imageUrl}/>
-          </ProductImg>
-          <Text typo="Text_14_SB"
-            color="gray_400"
-          >{props.title}</Text>
-          <Text
-            typo="Header_24"
-            color="black"
-          >{props.price}원</Text>
-          <StarRate ratingnum = {props.rate}/>
+    <>
+    <ProductItem>
+      <Link to = {`/products/${props.id}`}>
+            <ProductImg>
+              <img src = {props.imageUrl}/>
+            </ProductImg>
+            <Text typo="Text_14_SB"
+              color="gray_400"
+              as = "p"
+            >{props.title}</Text>
+            <Text
+              typo="Header_24"
+              color="black"
+            >{props.price}원</Text>
+            <StarRate ratingnum = {props.rate}/>
+        </Link>
+        <FaShoppingCart 
+          color = {theme.palette['main_400']} 
+          className ="product-item__add-cart"
+          onClick = {addToCart}
+          />
+        <span>{cartAmount || 0}</span>
         </ProductItem>
-      </Link>
+    </>
   )
 };
 export default ProductItems;
@@ -32,6 +46,7 @@ const ProductImg = styled.div`
   position: relative;
   padding-top: 141.4%;
   overflow: hidden;
+  margin-bottom: 10px;
   img {
     position: absolute;
     top: 0;

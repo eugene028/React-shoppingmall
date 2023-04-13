@@ -7,9 +7,12 @@ import { Text } from '@styles/components';
 import { Padding } from '@styles/layout';
 import GET_PRODUCTS, { Products } from '../../graphql/products'
 const ProductPage = () => {
-  const { data } = useQuery<Products>(QueryKeys.PRODUCTS, () =>
-    graphqlFetcher(GET_PRODUCTS));  
+  // const { data } = useQuery<Products | unknown>(QueryKeys.PRODUCTS, () =>
+  //   graphqlFetcher(GET_PRODUCTS));  
 
+  const { data } = useQuery<Products>(QueryKeys.PRODUCTS, () =>
+    graphqlFetcher<Products>(GET_PRODUCTS)
+  )
 
     return (
         <div>

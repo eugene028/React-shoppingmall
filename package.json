@@ -21,11 +21,13 @@
     "graphql-tag": "^2.12.6",
     "react": "latest",
     "react-dom": "latest",
+    "react-icons": "^4.8.0",
     "react-query": "^3.39.3",
     "react-responsive": "^9.0.2",
     "react-router": "^6.10.0",
     "react-router-dom": "^6.10.0",
     "react-simple-star-rating": "^5.1.7",
+    "recoil": "^0.7.7",
     "styled-components": "^5.3.9",
     "uuid": "^9.0.0",
     "vite-plugin-next-react-router": "^0.6.2"
