@@ -7,8 +7,10 @@ import { Text } from '@styles/components';
 import { Padding } from '@styles/layout';
 import GET_PRODUCTS, { Products } from '../../graphql/products'
 const ProductPage = () => {
-    const { data } = useQuery<Products>(QueryKeys.PRODUCTS, () => 
-      graphqlFetcher(GET_PRODUCTS);
+  const { data } = useQuery<Products>(QueryKeys.PRODUCTS, () =>
+    graphqlFetcher(GET_PRODUCTS));  
+
+
     return (
         <div>
           <Padding size = {[60, 20]}>

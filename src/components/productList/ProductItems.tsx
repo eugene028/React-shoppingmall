@@ -19,7 +19,7 @@ const ProductItems= (props: Product) => {
           <Text
             typo="Header_24"
             color="black"
-          >$ {props.price}</Text>
+          >{props.price}원</Text>
           <StarRate ratingnum = {props.rate}/>
         </ProductItem>
       </Link>
@@ -39,7 +39,7 @@ const ProductImg = styled.div`
     right: 0;
     bottom: 0;
     width: 100%;
-    height: 80%;
+    height: 100%;
     background: ${({ theme }) => theme.palette.gray_300};
     margin-bottom: 10px;
     object-fit: cover;
