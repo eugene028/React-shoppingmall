@@ -1,7 +1,13 @@
 import { DELETE_CART, TCart, UPDATE_CART } from "../../graphql/cart"
 import { useMutation } from 'react-query';
 import { getClient, graphqlFetcher, QueryKeys } from "@libs/apis/products/queryClientApi";
-import { RefObject, SyntheticEvent, forwardRef, ForwardedRef } from "react";
+import { RefObject, SyntheticEvent, forwardRef, ForwardedRef, HTMLAttributes } from "react";
+import SelectedData from "./SelectedData";
+import styled from "@emotion/styled";
+import { Text } from "@styles/components";
+import { media } from "@styles/theme";
+import { theme } from "@styles/theme";
+import { MdOutlineDeleteOutline } from 'react-icons/md'
 
 const CartItem = ({ id, imageUrl, price, title, amount }: TCart, ref: ForwardedRef<HTMLInputElement>) => {
     const queryClient = getClient();
@@ -42,7 +48,7 @@ const CartItem = ({ id, imageUrl, price, title, amount }: TCart, ref: ForwardedR
     })
 
     const handleUpdateAmount = (e: SyntheticEvent) => {
-        const amount = Number((e.target as HTMLInputElement).value)
+        const amount = Number((e.target as HTMLInputElement).value);
         if (amount < 1) return
         updateCart({id, amount})
     }
@@ -66,24 +72,64 @@ const CartItem = ({ id, imageUrl, price, title, amount }: TCart, ref: ForwardedR
         // queryClient.invalidateQueries(QueryKeys.CART); 두개를 동기처럼 처리하면 어떡해!! 
     
     return (
-        <>
-            <li>
-            <input
-                className="cart-item__checkbox"
-                type="checkbox"
-                name="select-item"
-                ref={ref}
-                data-id={id}
+        <CartContainer>
+            <ItemWrapper>
+                <input
+                    className="cart-item__checkbox"
+                    type="checkbox"
+                    name="select-item"
+                    ref={ref}
+                    data-id={id}
                 />
-                <img src= {imageUrl} />
-                <ul>{id}</ul>
-                <ul>{title}</ul>
-                <ul>{amount}</ul>
-                <input type = "number" className = "cart-item__amount" min = {1} value = {amount} onChange={handleUpdateAmount}/>
-                <button type = "button" onClick = {handleDeleteItem}>삭제</button>
-            </li>
-        </>
+                <SelectedData imageUrl = {imageUrl} price={price} title={title} amount = {amount} />
+                <PriceDelete>
+                    <Text typo ='Text_18_SB' color = 'black' className="finalPrice">{price*amount}원</Text>
+                    <AmountInput type = "number" className = "cart-item__amount" 
+                        min = {1} value = {amount} 
+                        onChange={handleUpdateAmount}
+                    />
+                </PriceDelete>
+                <MdOutlineDeleteOutline size = '2rem' color = {theme.palette.main_400} onClick = {handleDeleteItem}/>
+            </ItemWrapper>
+            <br/>
+
+        </CartContainer>
     )
 }
 
 export default forwardRef(CartItem)
+
+//아이템들 세로 정렬
+const CartContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+`
+//아이템들 가로 정렬 
+const ItemWrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    .cart-item__checkbox{
+        margin-right: 20px
+    }
+    padding: 20px;
+    border-bottom: 2px solid ${theme.palette.main_200};
+`
+const AmountInput = styled.input`
+    max-width: 50px;
+    max-height: 20px;
+   
+`
+
+const PriceDelete = styled.div`
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    ${media.mobile} {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap:10px;
+    }
+`

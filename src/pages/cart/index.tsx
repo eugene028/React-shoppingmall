@@ -16,7 +16,6 @@ const Cart = () => {
     return (
         <>
             <CartList items = {cartItems} />
-            <div>장바구니</div>
         </>
     );
 };
