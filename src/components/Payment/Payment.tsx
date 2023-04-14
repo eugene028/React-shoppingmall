@@ -6,7 +6,7 @@ import { checkedCartState } from '../../store/cart';
 import PaymentModal from './PaymentModal';
 import { graphqlFetcher } from '@libs/apis/products/queryClientApi';
 import { useMutation } from 'react-query';
-import { EXECUTE_PAY } from 'src/graphql/payment';
+import { EXECUTE_PAY } from '../../graphql/payment';
 
 type PaymentInfos = string[]
 
@@ -14,8 +14,8 @@ const Payment = () => {
     const navigate = useNavigate();
     const [checkedCartData, setCheckedCartData] = useRecoilState(checkedCartState);
     const [modalShown, toggleModal] = useState(false);
-    const { mutate: executePay } = useMutation((ids: PaymentInfos) =>
-        graphqlFetcher(EXECUTE_PAY, { ids }),
+    const { mutate: executePay } = useMutation((payInfos: PaymentInfos) =>
+        graphqlFetcher(EXECUTE_PAY, payInfos),
     )
     const showModal  = () => {
         toggleModal(true);

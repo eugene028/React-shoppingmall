@@ -1,12 +1,12 @@
 import { graphql } from 'msw';
-import { EXECUTE_PAY } from 'src/graphql/payment';
+import { EXECUTE_PAY } from '../graphql/payment';
 import { GET_CART, ADD_CART, TCart, UPDATE_CART, DELETE_CART } from '../graphql/cart'
 import GET_PRODUCTS, { GET_PRODUCT} from '../graphql/products'
 
 //즉시실행함수로 변경
 const mockProducts = (() => Array.from( {length: 20}).map((_, i) => ({
     id: i + 1 + '',
-    imageUrl: `https://placeimg.com/640/480/${i+1}`,
+    imageUrl: `https://picsum.photos/id/${i+10}/200/150`,
     price: Math.floor(Math.random() * (50000 - 2000) + 1),
     title: `임시상품${i + 1}`,
     description: `임시상세내용${i + 1}`,
@@ -69,8 +69,11 @@ export const handlers = [
         cartData = newData;
         return res(ctx.data(id));
     }),
-    graphql.mutation(EXECUTE_PAY, ({variables}, res, ctx) => {
-        
+    graphql.mutation(EXECUTE_PAY, ({variables : ids}, res, ctx) => {
+        ids.forEach((id: string) => {
+            delete cartData[id];
+        })
+        return res(ctx.data(ids))
     })
   ]
   

@@ -35,7 +35,7 @@ const CartList = ({ items }: { items: TCart[]}) => {
 
     const handleCheckboxChanged = (e: SyntheticEvent) => {
         if(!formRef.current) return;
-        const targetInput = e.target as HTMLInputElement;
+        const targetInput = e?.target as HTMLInputElement;
  
         if (targetInput && targetInput.classList.contains('select-all')) {
             setItemsCheckedFromAll(targetInput)
@@ -61,7 +61,7 @@ const CartList = ({ items }: { items: TCart[]}) => {
             if(itemRef) itemRef.current!.checked = true
         })
         setAllCheckedFromItems();
-    })
+    }, [])
    
 
     useEffect(()=> {
