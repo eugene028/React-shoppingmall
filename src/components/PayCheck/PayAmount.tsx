@@ -18,6 +18,7 @@ const PayAmount = ({
 }) => {
     const navigate = useNavigate();
     const checkedItems = useRecoilValue(checkedCartState);
+    console.log(checkedItems);
     const totalPrice = checkedItems.reduce((res, {price, amount}) => {
         res += price * amount;
         return res;

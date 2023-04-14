@@ -48,10 +48,10 @@ const CartList = ({ items }: { items: TCart[]}) => {
 
     const handleSubmit = () => {
         if(checkedCartData.length){
-            navigate('/payments')
+            navigate('/payment')
         }
         else{
-            window.alert('결제할 상품을 먼저 선택해주세요!😞');
+            alert('결제할 상품을 먼저 선택해주세요!😞');
         }
     }
 
