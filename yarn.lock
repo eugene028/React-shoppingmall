@@ -833,7 +833,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:latest":
+"@types/react-dom@npm:^18.0.11":
   version: 18.0.11
   resolution: "@types/react-dom@npm:18.0.11"
   dependencies:
@@ -3316,7 +3316,7 @@ __metadata:
     "@emotion/styled": ^11.10.6
     "@types/node": ^18.15.11
     "@types/react": latest
-    "@types/react-dom": latest
+    "@types/react-dom": ^18.0.11
     "@types/react-router-dom": ^5.3.3
     "@types/uuid": ^9.0.1
     "@vitejs/plugin-react": ^3.1.0

@@ -81,7 +81,7 @@ const CartItem = ({ id, imageUrl, price, title, amount }: TCart, ref: ForwardedR
                     ref={ref}
                     data-id={id}
                 />
-                <SelectedData imageUrl = {imageUrl} price={price} title={title} amount = {amount} />
+                <SelectedData imageUrl = {imageUrl} price={price} title={title} amount = {amount} data-id = {id}/>
                 <PriceDelete>
                     <Text typo ='Text_18_SB' color = 'black' className="finalPrice">{price*amount}원</Text>
                     <AmountInput type = "number" className = "cart-item__amount" 
