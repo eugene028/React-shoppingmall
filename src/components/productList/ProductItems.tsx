@@ -31,7 +31,7 @@ const ProductItems= (props: Product) => {
    return (
     <>
     <ProductItem>
-      <Link to = {`/products/${props.id}`}>
+      <Link  style={{ textDecoration: "none", cursor: "pointer"}} to = {`/products/${props.id}`}>
             <ProductImg>
               <img src = {props.imageUrl}/>
             </ProductImg>
