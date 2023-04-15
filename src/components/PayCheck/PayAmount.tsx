@@ -8,6 +8,7 @@ import { redirect } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { SyntheticEvent } from "react";
+import PayInfo from "./PayInfo";
 
 const PayAmount = ({
     handleSubmit,
@@ -26,13 +27,6 @@ const PayAmount = ({
 
     return (
         <PayContainer>
-            {/* {checkedItems.map(({ imageUrl, price, title, id, amount }) => (
-                <>
-                    <SelectedData amount = {amount} imageUrl={imageUrl} price = {price} title= {title} key= {id}/>
-                    <p>수량 : {amount}</p>
-                    <p>금액 : {price * amount}</p>
-                </>
-            ))} */}
             <PayWrapper>
                 <Text typo="Text_16_SB" color ="black">
                     총 주문 가격 : 
@@ -40,18 +34,26 @@ const PayAmount = ({
                     <Text typo ="G_Header_24_B" color ="red_300">
                         {totalPrice}원
                 </Text>
+                
             </PayWrapper>
             <PayButton onClick ={handleSubmit} >
                 <Text typo = "G_Header_24_B" color ="white">
                     {submitTitle}
                 </Text>
             </PayButton>
-           
         </PayContainer>
+           
     );
 };
 
 export default PayAmount;
+
+const PayContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin : 10px;
+`
 
 const PayButton = styled.button`
     background: ${theme.palette.main_400};
@@ -59,12 +61,6 @@ const PayButton = styled.button`
     height: 60px; 
     border-radius: 12px;
 `
-const PayContainer = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-`
-
 const PayWrapper = styled.div`
     display:flex;
     width : 60%;

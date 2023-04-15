@@ -88,8 +88,9 @@ const CartList = ({ items }: { items: TCart[]}) => {
                     </Text>
                 </CartHeader>
                 {items.map((item, i) => <CartItem { ...item} key = {item.id} ref = {checkboxRefs[i]}/>)}
+                <PayAmount handleSubmit = {handleSubmit} submitTitle="구매하기"/>
             </CartContainer>
-            <PayAmount handleSubmit = {handleSubmit} submitTitle="구매하기"/>
+            
         </form>
     );
 };
