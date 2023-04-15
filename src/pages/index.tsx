@@ -1,3 +1,10 @@
-const MainPage = () => <div>메인페이지</div>
+import  HomePage from "@components/HomePage/HomePage"
+const MainPage = () => {
+    return (
+    <>
+        <HomePage/>
+    </>
+    )
+}
 
 export default MainPage
