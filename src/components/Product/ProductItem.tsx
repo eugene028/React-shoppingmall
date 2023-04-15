@@ -61,7 +61,6 @@ const ProductContainer = styled.div`
     padding-top: 100px;
     justify-content: center;
     gap: 3rem;
-    /* margin: 0px 200px; */
     width:100%;
     height: 100%;
     display: flex;
@@ -71,7 +70,6 @@ const ProductContainer = styled.div`
         object-fit:cover;
     }
     ${media.mobile} {
-        margin: 0px 70px;
         img{
             width: 200px;
             object-fit:cover;
@@ -106,6 +104,9 @@ const CartButton = styled.button`
     text-align:center;
     background: ${theme.palette.main_300};
     border-radius: 12px;
+    ${media.mobile} {
+        width: 90px;
+    }
 `
 
 const Buttoncontainer = styled.div`
@@ -115,6 +116,9 @@ const Buttoncontainer = styled.div`
     justify-content: center;
     align-items: center;
     gap:40px;
+    ${media.mobile} {
+        gap:20px;
+    }
 `
 
 const PayButton = styled.button`
@@ -124,4 +128,7 @@ const PayButton = styled.button`
     background: ${theme.palette.main_100};
     border-radius: 12px;
     border: 2px solid ${theme.palette.main_300};
+    ${media.mobile} {
+        width: 90px;
+    }
 `
