@@ -6,6 +6,7 @@ import { theme } from '@styles/theme';
 
 const ModalPortal = ({ children }: {children: ReactElement}) => {
     return createPortal(children, document.getElementById('modal')!)
+}
 
 const PaymentModal = ({show, proceed, cancel} : {show: boolean;
 proceed:() => void; cancel:() => void;}) => {
