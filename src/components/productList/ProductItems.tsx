@@ -5,15 +5,29 @@ import StarRate from './StarRate';
 import { Link } from 'react-router-dom';
 import { FaShoppingCart } from 'react-icons/fa';
 import { theme } from '@styles/theme';
+import { useState } from 'react';
+import CartModal from '@components/Cart/CartModal';
 import { useMutation } from 'react-query';
 import { graphqlFetcher, QueryKeys } from '@libs/apis/products/queryClientApi';
 import { ADD_CART } from '../../graphql/cart'
 
 const ProductItems= (props: Product) => {
+  const [modalOpen, setModalOpen] = useState(false);
   // const [cartAmount, setCartAmount] = useRecoilState(cartItemSelector(props.id));
   // // const addToCart =  () => setCartAmount(cartAmount || 0 + 1);
   // const addToCart = () => setCartAmount(prev => (prev || 0) + 1);
-  const { mutate : addCart } = useMutation((id : string) => graphqlFetcher(ADD_CART, { id }))
+  const { mutate : addCart } = useMutation((id : string) => graphqlFetcher(ADD_CART, { id }));
+  const openModal = () => {
+    setModalOpen(true);
+  }
+  const addCartProduct = () => {
+    addCart(props.id);
+    setModalOpen(false);
+  }
+  const closeModal = () => {
+    setModalOpen(false);
+  }
+
    return (
     <>
     <ProductItem>
@@ -34,9 +48,11 @@ const ProductItems= (props: Product) => {
         <FaShoppingCart 
           color = {theme.palette['main_400']} 
           className ="product-item__add-cart"
-          onClick = {() => addCart(props.id)}
+          onClick = {openModal}
+          style = {{cursor:'pointer'}}
           />
         </ProductItem>
+        <CartModal show = {modalOpen} proceed = {addCartProduct} cancel = {closeModal}/>
     </>
   )
 };

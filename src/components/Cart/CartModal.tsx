@@ -6,15 +6,16 @@ import { theme } from '@styles/theme';
 
 const ModalPortal = ({ children }: {children: ReactElement}) => {
     return createPortal(children, document.getElementById('modal')!)
+}
 
-const PaymentModal = ({show, proceed, cancel} : {show: boolean;
+const CartModal = ({show, proceed, cancel} : {show: boolean;
 proceed:() => void; cancel:() => void;}) => {
     return show ? (<ModalPortal>
         <ModalWrapper>
             <Overlay/>
             <ModalBox>
                 <ModalText>
-                    <Text typo ='Header_20'>결제를 진행할까요?</Text>
+                    <Text typo ='Header_20'>해당 상품을 장바구니에 추가할까요?</Text>
                     <YesorNo>
                         <SelectButton onClick ={ proceed }><Text typo= 'Text_18_SB' color ='black'>예</Text></SelectButton>
                         <SelectButton onClick = { cancel }><Text typo= 'Text_18_SB' color ='black'>아니오</Text></SelectButton>
@@ -25,7 +26,7 @@ proceed:() => void; cancel:() => void;}) => {
     </ModalPortal>) : null
 };
 
-export default PaymentModal;
+export default CartModal;
 
 const ModalWrapper = styled.div`
     @keyframes fadeIn {
