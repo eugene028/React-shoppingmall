@@ -22,3 +22,4 @@ mock API를 생성하여 백엔드와 통신하는 것과 같이 데이터를 �
 - <a href = "https://velog.io/@gene028/커비샵-개발일지-1-프로젝트-세팅하기-Vite-React-Typescript">프로젝트 세팅하기 (Vite + React + Typescript)</a>
 - <a href = "https://velog.io/@gene028/커비샵-개발일지-2-emotion과-global-ui-세팅"> emotion과 global ui 세팅하기</a>
 - <a href = "https://velog.io/@gene028/커비샵-개발일지-3-React-query와-캐싱-이해하기"> React-query와 캐싱 이해하기</a>
+- <a href = "https://velog.io/@gene028/커비샵-개발일지-4-Recoil로-장바구니-상태-관리하기"> Recoil로 장바구니 상태 관리하기 </a>
